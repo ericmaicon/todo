@@ -1,0 +1,19 @@
+{
+  "name": "@api/data",
+  "version": "1.0.0",
+  "private": true,
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "clean-lib": "node_modules/.bin/rimraf ./lib",
+    "build": "npm run clean-lib && tsc",
+    "test": "jest",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm test && npm run lint",
+    "preversion": "npm run lint"
+  },
+  "devDependencies": {}
+}
