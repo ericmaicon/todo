@@ -1,6 +1,5 @@
-import TaskRepository from './TaskRepository';
-import { Database } from '../protocol';
-import { Task } from '../model';
+import TaskRepository from '../TaskRepository';
+import { Database } from '../../protocol';
 
 const taskList = [
   {
@@ -17,29 +16,29 @@ const taskList = [
   },
 ];
 
-class DatabaseStub implements Database<Task> {
-  async list(): Promise<Task[]> {
+class DatabaseStub implements Database {
+  async list(table: string): Promise<object[]> {
     return Promise.resolve(taskList);
   }
 
-  async update(id: number, data: Task): Promise<void> {
+  update(table: string, id: number, data: object): Promise<void> {
     return Promise.resolve();
   }
 
-  async insert(data: Task): Promise<void> {
+  insert(table: string, data: object): Promise<void> {
     return Promise.resolve();
   }
 }
 
 describe('TaskRepository', () => {
-  test('list tasks', async () => {
+  test('should return the task list', async () => {
     const database = new DatabaseStub();
     const repository = new TaskRepository(database);
     const list = await repository.list();
     expect(list).toEqual(taskList);
   });
 
-  test('update a task', async () => {
+  test('should update a task', async () => {
     const database = new DatabaseStub();
     const repository = new TaskRepository(database);
     const updateData = {
@@ -48,10 +47,10 @@ describe('TaskRepository', () => {
 
     const updateSpy = jest.spyOn(database, 'update');
     await repository.update(1, updateData);
-    expect(updateSpy).toBeCalledWith(1, updateData);
+    expect(updateSpy).toBeCalledWith('task', 1, updateData);
   });
 
-  test('insert a task', async () => {
+  test('should insert a task', async () => {
     const database = new DatabaseStub();
     const repository = new TaskRepository(database);
     const insertData = {
@@ -62,6 +61,6 @@ describe('TaskRepository', () => {
 
     const insertSpy = jest.spyOn(database, 'insert');
     await repository.insert(insertData);
-    expect(insertSpy).toBeCalledWith(insertData);
+    expect(insertSpy).toBeCalledWith('task', insertData);
   });
 });

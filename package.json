@@ -24,6 +24,7 @@
   },
   "scripts": {
     "commit": "git-cz",
+    "bootstrap": "lerna bootstrap",
     "release": "standard-version",
     "lint": "eslint . --ext .ts",
     "lint:fix": "yarn run lint --fix"

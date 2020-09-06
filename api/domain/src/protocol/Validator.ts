@@ -1,5 +1,5 @@
-export interface Validator {
-  isEmpty(field: string): boolean;
+export abstract class Validator {
+  abstract isEmpty(field: string): boolean;
 
-  notIn(field: string, items: string[]): boolean;
+  abstract notIn(field: string, items: string[]): boolean;
 }

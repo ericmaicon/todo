@@ -1,2 +1,2 @@
-export * from './protocol';
-export * from './repository';
+export { Database } from './protocol/Database';
+export { default as TaskRepository } from './repository/TaskRepository';

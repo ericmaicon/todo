@@ -1,8 +1,7 @@
-import TaskDomain from './TaskDomain';
-import { Repository } from './protocol';
-import { Task } from './model';
-import { Validator } from '../protocol';
-import { STATUSES } from '../constant/Statuses';
+import TaskDomain from '../TaskDomain';
+import { Repository, Validator } from '../../protocol';
+import Task from '../../model/Task';
+import { STATUSES } from '../../constant/Statuses';
 
 const taskList = [
   {
@@ -19,16 +18,16 @@ const taskList = [
   },
 ];
 
-class RepositoryStub implements Repository<Task> {
-  async list(): Promise<Task[]> {
+class RepositoryStub implements Repository {
+  list(): Promise<object[]> {
     return Promise.resolve(taskList);
   }
 
-  async update(id: number, data: Task): Promise<void> {
+  update(id: number, data: object): Promise<void> {
     return Promise.resolve();
   }
 
-  async insert(data: Task): Promise<void> {
+  insert(data: object): Promise<void> {
     return Promise.resolve();
   }
 }

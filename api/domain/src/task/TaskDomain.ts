@@ -1,19 +1,18 @@
-import { Repository } from './protocol';
-import { Task } from './model';
-import { Validator } from '../protocol';
+import Task from '../model/Task';
+import { Validator, Repository } from '../protocol';
 import { STATUSES } from '../constant/Statuses';
 
 export default class TaskDomain {
-  private readonly repository: Repository<Task>;
+  private readonly repository: Repository;
 
   private readonly validator: Validator;
 
-  constructor(repository: Repository<Task>, validator: Validator) {
+  constructor(repository: Repository, validator: Validator) {
     this.repository = repository;
     this.validator = validator;
   }
 
-  list(): Promise<Task[]> {
+  list(): Promise<object[]> {
     return this.repository.list();
   }
 
@@ -36,6 +35,6 @@ export default class TaskDomain {
 
     return this.repository.update(id, {
       status,
-    } as Task);
+    });
   }
 }
