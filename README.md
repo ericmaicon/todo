@@ -11,6 +11,7 @@ The main goal is to show a full api structure with capabilities of grow and be m
 - [Usage](#usage)
 - [Development](#development)
 - [API](#api)
+- [Site](#site)
 
 ## Requirements
 
@@ -112,3 +113,57 @@ Domain layer is responsible to implement the system logic and call repositories 
 ### Main (Presentation) Layer
 
 This layer is responbile of mount the pluzze. It will instantiate every layer, put them together and server express (or any other tool). The idea is keep it as much as possible decoupled from Express, so it can use any other tool if the requirements changes.
+
+### Graphql queries and mutations
+
+To be able to use the API, you can use the following queries:
+
+Fetch tasks
+
+```
+{
+  getTasks {
+    id
+    title
+    description
+    status
+  }
+}
+```
+
+Create tasks
+
+```
+mutation CreateTask(
+  $title: String,
+  $description: String
+) {
+    createTask(title: $title, description: $description)
+}
+```
+
+update status text
+
+```
+mutation UpdateStatusTask(
+  $id: ID,
+  $status: String
+) {
+    updateStatusTask(id: $id, status: $status)
+}
+```
+
+## Site
+
+The main goal behind the site is to have a way of grow the code easily. To do so, one UI library was created to separate the core components from the logic.
+
+The Site also tries to achieve the Clean architecture with a logic separation from the presentation logic.
+
+### UI Library
+
+UI Library has every core component from the system that has been used. You can check it using [storybook](https://storybook.js.org/) with the following command:
+
+```sh
+cd site/ui
+yarn storybook
+```
