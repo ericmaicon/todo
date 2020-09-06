@@ -7,8 +7,9 @@ export interface LabelProps {
 
 const Label: React.SFC<LabelProps> = ({
   children,
+  ...props
 }) => (
-    <StyledLabel>
+    <StyledLabel {...props}>
       {children}
     </StyledLabel>);
 

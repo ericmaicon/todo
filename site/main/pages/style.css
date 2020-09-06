@@ -1,0 +1,28 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  min-height: 100%;
+}
+
+body {
+  background: var(--color-blue);
+}
+
+*, button, input {
+  font-family: 'Roboto', sans-serif;
+}
+
+:root {
+  --color-primary: #8E9DCC;
+  --color-secondary: #D9DBF1;
+  --color-white: #F9F9ED;
+  --color-green: #DBF4A7;
+  --color-dark: #393F49;
+  --color-blue: #61DBFB;
+}

@@ -7,8 +7,10 @@ export interface TableRowProps {
 
 const TableRow: React.SFC<TableRowProps> = ({
   items,
+  ...props
 }) => (
     <tbody
+      {...props}
     >
       {items.map((item: { [key: string]: string }) => (
         <tr>

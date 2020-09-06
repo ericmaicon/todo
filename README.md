@@ -159,6 +159,11 @@ The main goal behind the site is to have a way of grow the code easily. To do so
 
 The Site also tries to achieve the Clean architecture with a logic separation from the presentation logic.
 
+There are some improvements to make so the system can be used for large scale:
+
+1. Add a css library such as styled-components.
+2. Add a form library to handle everythin, such as formik.
+
 ### UI Library
 
 UI Library has every core component from the system that has been used. You can check it using [storybook](https://storybook.js.org/) with the following command:

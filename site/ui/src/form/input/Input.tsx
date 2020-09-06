@@ -9,10 +9,12 @@ export interface InputProps {
 const Input: React.SFC<InputProps> = ({
   readonly,
   inputSize = 'lg',
+  ...props
 }) => (
     <StyledInput
       readonly={readonly}
       inputSize={inputSize}
+      {...props}
     />);
 
 export default Input;

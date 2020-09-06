@@ -15,12 +15,14 @@ const Button: React.SFC<ButtonProps> = ({
   appearance = 'primary',
   block = false,
   size = 'lg',
+  ...props
 }) => (
     <StyledButton
       active={active}
       appearance={appearance}
       block={block}
       size={size}
+      {...props}
     >
       {children}
     </StyledButton>);

@@ -8,6 +8,8 @@
     "@commitlint/config-conventional": "^9.1.2",
     "@types/jest": "^26.0.13",
     "@types/node": "^14.6.4",
+    "@types/react": "^16.9.49",
+    "@types/react-dom": "^16.9.8",
     "@typescript-eslint/eslint-plugin": "^4.0.1",
     "@typescript-eslint/parser": "^4.0.1",
     "cz-conventional-changelog": "^3.3.0",

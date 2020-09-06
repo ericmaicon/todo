@@ -7,11 +7,13 @@ export interface TableHeadProps {
 
 const TableHead: React.SFC<TableHeadProps> = ({
   headers,
+  ...props
 }) => (
     <thead
+      {...props}
     >
       <tr>
-        {headers.map((header) => <StyledTh>{header}</StyledTh>)}
+        {headers.map((header, key) => <StyledTh key={key}>{header}</StyledTh>)}
       </tr>
     </thead>);
 
