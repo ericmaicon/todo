@@ -2,7 +2,9 @@
 
 A small todo full app with API and a site.
 
-The main goal is to show a full api structure with capabilities of grow and be maintanable after long period of use.
+The main goal is to start an architecture with a full api and site structure with capabilities of grow and be maintanable after long period of use.
+
+![todo](https://user-images.githubusercontent.com/1010637/92345270-22a61f00-f09f-11ea-956b-1a88d9de5f4c.gif)
 
 ## Table of Contents
 
@@ -12,6 +14,7 @@ The main goal is to show a full api structure with capabilities of grow and be m
 - [Development](#development)
 - [API](#api)
 - [Site](#site)
+- [Tests](#tests)
 
 ## Requirements
 
@@ -94,6 +97,14 @@ yarn knex migrate:latest
 yarn test
 ```
 
+To start the site:
+
+```sh
+cd site/main
+cp .env.local .env
+yarn dev
+```
+
 ## API
 
 The main goal behind the api is split the code in a way that it can be maintanable by following SOLID principle in a clean architecture.
@@ -113,6 +124,10 @@ Domain layer is responsible to implement the system logic and call repositories 
 ### Main (Presentation) Layer
 
 This layer is responbile of mount the pluzze. It will instantiate every layer, put them together and server express (or any other tool). The idea is keep it as much as possible decoupled from Express, so it can use any other tool if the requirements changes.
+
+## Vendor
+
+Vendor is a place where every 3rd library tools is. This is a way to avoid the code/logic depends too much of a 3rd library.
 
 ### Graphql queries and mutations
 
@@ -172,3 +187,31 @@ UI Library has every core component from the system that has been used. You can 
 cd site/ui
 yarn storybook
 ```
+
+You can access at [http://localhost:6006/](http://localhost:6006/)
+
+### Data Layer
+
+This is the data responsible to know about the query and mutations. No other layer should know it.
+
+### Domain Layer
+
+This is the layer responsible for validation, logic and calling data layer.
+
+### Main (Presentation) Layer
+
+The main layer, where everything is connected.
+
+### Vendor
+
+Vendor is where the 3rd libraries is, like apollo.
+
+## Tests
+
+Each module has its own tests (apart from vendors and UI). There is no need of tests on vendors as we shouldn't test 3rd libraries.
+
+There is the unit tests in all over modules.
+
+There is integration tests in the api.
+
+To improve: add cypress on site/main package to test e2e.

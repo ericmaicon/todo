@@ -13,11 +13,11 @@ export default class TaskRepository {
   }
 
   async createTask(params: object):Promise<void> {
-    await this.graphqlClient.mutation(CREATE_TASK, params);
+    await this.graphqlClient.mutate(CREATE_TASK, params);
   }
 
   async updateStatusTask(id: number, params: object):Promise<void> {
-    await this.graphqlClient.mutation(UPDATE_STATUS_TASK, {
+    await this.graphqlClient.mutate(UPDATE_STATUS_TASK, {
       id,
       ...params,
     });

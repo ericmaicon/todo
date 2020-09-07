@@ -27,7 +27,8 @@ const Template: Story<TableProps> = (args) => (<TableComponent {...args}>
       title: 'Third Value',
       type: 'anything',
     },
-  ]} />
+  ]}
+    columns={['id', 'title', 'type']} />
 </TableComponent>);
 
 export const Table = Template.bind({});

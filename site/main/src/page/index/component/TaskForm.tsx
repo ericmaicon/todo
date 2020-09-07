@@ -1,16 +1,30 @@
 import React, { useState } from 'react';
 import {
-  Form, FormGroup, Label, Input, Button,
+  Form, FormGroup, Label, Input, Button, Alert,
 } from '@site/ui';
 import { formStyle } from './style';
+import { useAsync, useNonEmptyEffect } from '../../../hook';
+import { TaskFactory } from '../../../factory';
+
+interface TaskFormParams {
+  fetchTasks: () => void;
+}
 
 const defaultState = {
   title: '',
   description: '',
 };
 
-function TaskForm(): React.FC {
+const TaskForm: React.FunctionComponent<TaskFormParams> = ({ fetchTasks }) => {
   const [values, setValues] = useState(defaultState);
+  const {
+    value: taskValue, execute, pending, error,
+  } = useAsync(TaskFactory.createTask, false);
+
+  useNonEmptyEffect(() => {
+    setValues(defaultState);
+    fetchTasks();
+  }, [taskValue]);
 
   function handleChangeField(event: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.target;
@@ -23,12 +37,14 @@ function TaskForm(): React.FC {
 
   function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
-
-    setValues(defaultState);
+    execute(values);
   }
 
   return (
     <Form style={formStyle} onSubmit={handleSubmit}>
+      {error && (
+        <Alert>{error.message}</Alert>
+      )}
       <FormGroup>
         <Label>Title:</Label>
         <Input name="title" onChange={handleChangeField} value={values.title} />
@@ -38,10 +54,10 @@ function TaskForm(): React.FC {
         <Input name="description" onChange={handleChangeField} value={values.description} />
       </FormGroup>
       <FormGroup>
-        <Button type="submit" appearance="success">Create a Task</Button>
+        <Button type="submit" appearance="success" disabled={pending}>Create a Task</Button>
       </FormGroup>
     </Form>
   );
-}
+};
 
 export default TaskForm;

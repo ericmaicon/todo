@@ -22,7 +22,7 @@ class GraphqlClientStub implements GraphqlClient {
     return Promise.resolve(taskList);
   }
 
-  mutation(query: string, variables: object): Promise<object|void> {
+  mutate(query: string, variables: object): Promise<object|void> {
     return Promise.resolve();
   }
 }
@@ -43,9 +43,9 @@ describe('TaskRepository', () => {
       description: 'description',
     };
 
-    const mutationSpy = jest.spyOn(graphqlClient, 'mutation');
+    const mutateSpy = jest.spyOn(graphqlClient, 'mutate');
     await repository.createTask(insertData);
-    expect(mutationSpy).toBeCalledWith(CREATE_TASK, insertData);
+    expect(mutateSpy).toBeCalledWith(CREATE_TASK, insertData);
   });
 
   test('should update a task', async () => {
@@ -55,8 +55,8 @@ describe('TaskRepository', () => {
       status: 'in-progress',
     };
 
-    const mutationSpy = jest.spyOn(graphqlClient, 'mutation');
+    const mutateSpy = jest.spyOn(graphqlClient, 'mutate');
     await repository.updateStatusTask(1, updateData);
-    expect(mutationSpy).toBeCalledWith(UPDATE_STATUS_TASK, { id: 1, ...updateData });
+    expect(mutateSpy).toBeCalledWith(UPDATE_STATUS_TASK, { id: 1, ...updateData });
   });
 });

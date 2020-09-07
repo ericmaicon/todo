@@ -1,5 +1,4 @@
 import { Database } from '@api/data';
-import { Knex } from '@api/vendor';
 import DatabaseFactory from '../factory/DatabaseFactory';
 
 export default class DatabaseAdapter implements Database {
