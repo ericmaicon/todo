@@ -8,7 +8,7 @@ The main goal is to start an architecture with a full api and site structure wit
 
 ## Table of Contents
 
-- [Requirements](#requirements)
+- [Functional Requirements](#functional-requirements)
 - [Install](#install)
 - [Usage](#usage)
 - [Development](#development)
@@ -16,19 +16,19 @@ The main goal is to start an architecture with a full api and site structure wit
 - [Site](#site)
 - [Tests](#tests)
 
-## Requirements
+## Functional Requirements
 
 1. Build a page that lists tasks displaying their title and status
 2. The tasks must contain:
-  1. Title
-  2. Description
-  3. Status(​Pending, In Progress, Done​)
+   1. Title
+   2. Description
+   3. Status(​Pending, In Progress, Done​)
 3. Display the description of a task in a popover when hovering a task title
 4. In the same page, build a form to create new tasks
 5. Display the tasks according to the following requirements:
-  1. Pending tasks must be displayed in orange.
-  2. In Progress tasks must be displayed in green.
-  3. Done tasks must be displayed in strikethrough.
+   1. Pending tasks must be displayed in orange.
+   2. In Progress tasks must be displayed in green.
+   3. Done tasks must be displayed in strikethrough.
 6. Create a button/link to start the task and that, when clicked, changes the status of the task to In Progress.
 7. Create a button/link to complete the task and that, when clicked, changes the status of the task to Done.
 
@@ -38,7 +38,12 @@ This project uses [node](http://nodejs.org) and [yarn](https://yarnpkg.com/). Go
 
 ```sh
 yarn install
+npx lerna bootstrap
+sh ./build.sh
 ```
+
+This `build.sh` is a script that build every single package from this repository. If you are on Windows and it didn't work, you can try access each package and run `yarn build`
+
 
 To start MySQL using docker:
 
@@ -104,6 +109,8 @@ cd site/main
 cp .env.local .env
 yarn dev
 ```
+
+You can access the website via [http://localhost:3000/](http://localhost:3000/)
 
 ## API
 
